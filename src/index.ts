@@ -3,12 +3,17 @@
 import path from "path";
 import chalk from "chalk";
 import { default as player } from "play-sound";
+import { fileURLToPath } from "url";
 
-const __dirname = path.resolve();
+// Get the directory where the package is installed
+const packageRoot = path.dirname(fileURLToPath(import.meta.url));
+
+console.log("packageRoot", packageRoot);
 
 function main() {
-  player().play(path.join(__dirname, "sound.m4a"));
-  console.log(path.join(__dirname, "sound.m4a"));
+  const soundPath = path.resolve(packageRoot, "..", "sound.m4a");
+  player().play(soundPath);
+  console.log(soundPath);
   console.log(chalk.inverse("Abdestlendin!"));
 }
 
